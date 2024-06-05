@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/micromodal/dist/micromodal.min.css">
+</head>
+<body>
+
+<button id="open-modal">Select Timezone</button>
+
+
+<div id="timezone-modal" class="modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <header class="modal__header">
+                <h2 class="modal__title" id="modal-title">Select Timezone</h2>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            <main class="modal__content">
+                <select id="timezone-select">
+                    <option value="America/New_York">09:12		
+                        West Africa Standard Time
+                        Kinshasa, Democratic Republic of the Congo (GMT+1)</option>
+                    <option value="America/Los_Angeles">11:12		
+                        East Africa Time
+                        Addis Ababa (GMT+3)</option>
+                    <option value="America/Los_Angeles">09:12		
+                        Central European Standard Time
+                        Algiers [El Djazaïr] (GMT+1)</option>
+                    <option value="America/Los_Angeles">10:12		
+                        South Africa Standard Time
+                        Cape Town (GMT+2)</option>
+                        <option value="America/Los_Angeles">09:12		
+                            GMT+01:00
+                            Rabat (GMT+1)</option>
+                            <option value="America/Los_Angeles">10:12		
+                                Central Africa Time
+                                Harare (GMT+2)</option>
+                                <option value="America/Los_Angeles">11:12		
+                                    East Africa Time
+                                    Nairobi (GMT+3)</option>
+                    
+                </select>
+                <button id="apply-timezone">Apply</button>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+<script>
+    
+    MicroModal.init();
+
+    
+    document.getElementById('open-modal').addEventListener('click', function () {
+        MicroModal.show('timezone-modal');
+    });
+
+    
+    document.getElementById('apply-timezone').addEventListener('click', function () {
+        
+        var selectedTimezone = document.getElementById('timezone-select').value;
+        
+        
+        MicroModal.close('timezone-modal');
+        
+        
+        updateTime(selectedTimezone);
+    });
+
+    
+    function updateTime(timezone) {
+        var currentTime = new Date().toLocaleString("en-US", {timeZone: timezone});
+        document.getElementById('current-time').innerText = "Current Time: " + currentTime;
+    }
+</script>
+
+
+<div id="current-time">Current Time: </div>
+<script src="main.js"></script>
+
+</body>
+</html>
